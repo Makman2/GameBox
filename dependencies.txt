@@ -1,0 +1,6 @@
+Used dependencies in GameBox for now:
+[Ubuntu 14.04 LTS x64]
+- libxml2-utils (even the XMLLINT shell is not used now for the resource creation)
+- valac (vala compiler) higher than 0.22.1
+- libgtk3
+

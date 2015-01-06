@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+    <gresource prefix="/">
+        <file>GameBox/UI/ActionPS3Circle.png</file>
+        <file>GameBox/UI/ActionPS3Square.png</file>
+        <file>GameBox/UI/ActionPS3Triangle.png</file>
+        <file>GameBox/UI/ActionPS3X.png</file>
+        <file>GameBox/UI/GameMenuWindow.glade</file>
+        <file>GameBox/UI/Widgets/ActionItem.glade</file>
+        <file>GameBox/UI/Widgets/GameItem.glade</file>
+
+<!-- EXAMPLE RESOURCES FOR BUILD TESTING, DELETE IF NOT TESTING ANYMORE! -->
+        <file>GameBox/f-zero.jpg</file>
+        <file>GameBox/super-castlevania-4.jpg</file>
+
+<!-- FEATURE EXAMPLES
+        <file>data/splashscreen.png</file>
+        <file compressed="true">dialog.ui</file>
+        <file preprocess="xml-stripblanks">menumarkup.xml</file>
+-->
+    </gresource>
+</gresources>
+
