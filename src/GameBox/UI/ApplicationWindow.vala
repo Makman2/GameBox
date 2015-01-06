@@ -37,9 +37,22 @@ namespace GameBox.UI
                 new GameBox.UI.Widgets.GameItem.from_game(fzero);
             GameBox.UI.Widgets.GameItem item2 =
                 new GameBox.UI.Widgets.GameItem.from_game(castlevania);
-            
+
             m_GameList.add(item1);
             m_GameList.add(item2);
+            
+            // ### TEST: START SNES9X EMULATOR ###
+            // ### PLUG/SOCKET MECHANISM NEEDS TO BE IMPLEMENTED INSIDE
+            //     SNES9X. Need to create a plug and a pipe to pass the plug-id
+            //     over it. ###
+            
+            /*            
+            string[] procargs = {"../emulators/snes9x/unix/snes9x",
+                                 "../emulators/Super Castlevania IV.smc"};
+            SubprocessLauncher launcher =
+                new SubprocessLauncher(SubprocessFlags.NONE);
+            Subprocess proc = launcher.spawnv(procargs);
+            */
         }
 
         /**
