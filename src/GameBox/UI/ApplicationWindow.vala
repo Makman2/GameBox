@@ -16,6 +16,13 @@ namespace GameBox.UI
             this.set_default_size(400, 400);
             this.title = "GameBox";
 
+            // Set background image.
+            // Later port this to an interactive background interface to
+            // allow complex animations and to make a uniform interface
+            // even for simple things like an image background.
+            m_ReferenceBackground.set_from_resource(
+                "/GameBox/UI/Background/Background.png");
+
             // ### EXAMPLE TEST CODE!!! ###
             //  ~~~ ADD ACTION
             GameBox.UI.Action action;
@@ -23,7 +30,7 @@ namespace GameBox.UI
                "Play", "/GameBox/UI/ActionPS3X.png");
             GameBox.UI.Widgets.ActionItem actionitem =
                 new GameBox.UI.Widgets.ActionItem.from_action(action);
-            m_ActionList.add(actionitem);
+            m_ReferenceActionList.add(actionitem);
             //  ~~~ ADD TWO GAMES
             GameBox.Game.Game fzero = new GameBox.Game.Game.from_resource(
                 "F-Zero", "SNES", "The most popular racing game on SNES!",
@@ -38,8 +45,8 @@ namespace GameBox.UI
             GameBox.UI.Widgets.GameItem item2 =
                 new GameBox.UI.Widgets.GameItem.from_game(castlevania);
 
-            m_GameList.add(item1);
-            m_GameList.add(item2);
+            m_ReferenceGameList.add(item1);
+            m_ReferenceGameList.add(item2);
             
             // ### TEST: START SNES9X EMULATOR ###
             // ### PLUG/SOCKET MECHANISM NEEDS TO BE IMPLEMENTED INSIDE
@@ -74,13 +81,16 @@ namespace GameBox.UI
          */
         private void InitializeReferences()
         {
-            m_GameList = (Gtk.ListBox)m_Builder.get_object("GameList");
-            m_ActionList = (Gtk.Box)m_Builder.get_object("ActionList");
+            m_ReferenceGameList = (Gtk.ListBox)m_Builder.get_object("GameList");
+            m_ReferenceActionList = (Gtk.Box)m_Builder.get_object("ActionList");
+            m_ReferenceBackground =
+                (Gtk.Image)m_Builder.get_object("Background");
         }
 
         private Gtk.Builder m_Builder;
-        private Gtk.ListBox m_GameList;
-        private Gtk.Box m_ActionList;
+        private Gtk.ListBox m_ReferenceGameList;
+        private Gtk.Box m_ReferenceActionList;
+        private Gtk.Image m_ReferenceBackground;
     }
 }
 

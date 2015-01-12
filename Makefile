@@ -5,7 +5,10 @@ SOURCES=src/GameBox/gamebox.vala \
         src/GameBox/UI/ApplicationWindow.vala \
         src/GameBox/UI/Action.vala \
         src/GameBox/UI/Widgets/ActionItem.vala \
-        src/GameBox/UI/Widgets/GameItem.vala
+        src/GameBox/UI/Widgets/GameItem.vala \
+        src/GameBox/UI/Background/Background.vala \
+        src/GameBox/UI/Background/AnimatedBackground.vala \
+        src/GameBox/UI/Background/ImageBackground.vala
 
 RESOURCEXML=src/resources.gresource.xml
 

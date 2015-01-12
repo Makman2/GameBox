@@ -20,9 +20,9 @@ namespace GameBox
         private static const string RESOURCE_FILE = "resources.gresource";
         /**
          * The maximum buffer length, for security and RAM-limitation purposes.
-         * Limited to 16MB.
+         * Limited to 32MB.
          */
-        public static const size_t SECURITY_MAXBUFFER = 0x100000;
+        public static const size_t SECURITY_MAXBUFFER = 0x200000;
 
         /**
          * Creates a new GameBox resource object and imports the according

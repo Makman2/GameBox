@@ -6,10 +6,13 @@
         <file>GameBox/UI/ActionPS3Triangle.png</file>
         <file>GameBox/UI/ActionPS3X.png</file>
         <file>GameBox/UI/GameMenuWindow.glade</file>
+
         <file>GameBox/UI/Widgets/ActionItem.glade</file>
         <file>GameBox/UI/Widgets/GameItem.glade</file>
 
-<!-- EXAMPLE RESOURCES FOR BUILD TESTING, DELETE IF NOT TESTING ANYMORE! -->
+        <file>GameBox/UI/Background/Background.png</file>
+
+<!-- EXAMPLE RESOURCES FOR DEBUG TESTING, DELETE IF NOT TESTING ANYMORE! -->
         <file>GameBox/f-zero.jpg</file>
         <file>GameBox/super-castlevania-4.jpg</file>
 
