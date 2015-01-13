@@ -2,23 +2,7 @@
 <!-- Generated with glade 3.16.1 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
-  <object class="GtkOverlay" id="Toplevel">
-    <property name="can_focus">False</property>
-    <child>
-      <placeholder/>
-    </child>
-    <child>
-      <object class="GtkImage" id="Background">
-        <property name="visible">True</property>
-        <property name="sensitive">False</property>
-        <property name="can_focus">False</property>
-        <property name="xalign">0</property>
-        <property name="yalign">0</property>
-        <property name="stock">gtk-missing-image</property>
-      </object>
-    </child>
-    <child type="overlay">
-      <object class="GtkBox" id="box1">
+      <object class="GtkBox" id="Toplevel">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
@@ -60,6 +44,4 @@
           </packing>
         </child>
       </object>
-    </child>
-  </object>
 </interface>

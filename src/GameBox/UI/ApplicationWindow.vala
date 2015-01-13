@@ -17,11 +17,9 @@ namespace GameBox.UI
             this.title = "GameBox";
 
             // Set background image.
-            // Later port this to an interactive background interface to
-            // allow complex animations and to make a uniform interface
-            // even for simple things like an image background.
-            m_ReferenceBackground.set_from_resource(
-                "/GameBox/UI/Background/Background.png");
+            m_Background = new GameBox.UI.Background.ImageBackground.
+                from_target_and_image(this, new Gdk.Pixbuf.from_resource(
+                "/GameBox/UI/Background/Background.png"));
 
             // ### EXAMPLE TEST CODE!!! ###
             //  ~~~ ADD ACTION
@@ -83,14 +81,12 @@ namespace GameBox.UI
         {
             m_ReferenceGameList = (Gtk.ListBox)m_Builder.get_object("GameList");
             m_ReferenceActionList = (Gtk.Box)m_Builder.get_object("ActionList");
-            m_ReferenceBackground =
-                (Gtk.Image)m_Builder.get_object("Background");
         }
 
         private Gtk.Builder m_Builder;
         private Gtk.ListBox m_ReferenceGameList;
         private Gtk.Box m_ReferenceActionList;
-        private Gtk.Image m_ReferenceBackground;
+        private GameBox.UI.Background.Background m_Background;
     }
 }
 

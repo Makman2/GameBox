@@ -10,7 +10,7 @@ namespace GameBox.UI.Background
          */
         protected Background()
         {
-            this.Target = null;
+            Background.from_target((Gtk.Widget)null);
         }
 
         /**
@@ -18,24 +18,21 @@ namespace GameBox.UI.Background
          *
          * @param widget The Gtk.Widget to draw on.
          */
-        protected Background.from_target(Gtk.Widget widget)
+        protected Background.from_target(Gtk.Widget? widget)
         {
+            this.m_Target = null;
             this.Target = widget;
         }
 
         ~Background()
         {
-            // Disconnect signals.
-            if (Target != null)
-            {
-                Target.draw.disconnect(OnDraw);
-            }
+            ReleaseTarget();
         }
 
         /**
          * The target widget to draw background from.
          */
-        public Gtk.Widget Target
+        public Gtk.Widget? Target
         {
             get
             {
@@ -43,16 +40,18 @@ namespace GameBox.UI.Background
             }
             set
             {
-                if (m_Target != null)
-                {
-                    // Disconnect previous signals.
-                    m_Target.draw.disconnect(OnDraw);
-                }
+                // Cleanup previous target.
+                ReleaseTarget();
 
                 if (value != null)
                 {
                     // Connect signals.
                     value.draw.connect(OnDraw);
+                    // Save "app_paintable" property for restoring later.
+                    m_CachedAppPaintable = value.app_paintable;
+                    // Set application paintable to true, so backgrounds do
+                    // affect drawing.
+                    value.app_paintable = true;
                 }
 
                 // Run overridable function hat reacts when the target changed.
@@ -60,6 +59,17 @@ namespace GameBox.UI.Background
 
                 // Set new value.
                 m_Target = value;
+            }
+        }
+
+        private void ReleaseTarget()
+        {
+            if (Target != null)
+            {
+                // Disconnect previous signals.
+                Target.draw.disconnect(OnDraw);
+                // Restore "app_paintable" property.
+                Target.app_paintable = m_CachedAppPaintable;
             }
         }
 
@@ -73,8 +83,8 @@ namespace GameBox.UI.Background
          * @param old_widget The old widget before Target was changed.
          * @param new_widget The new widget after Target was changed.
          */
-        protected virtual void OnTargetChanged(Gtk.Widget old_widget,
-                                               Gtk.Widget new_widget)
+        protected virtual void OnTargetChanged(Gtk.Widget? old_widget,
+                                               Gtk.Widget? new_widget)
         {}
 
         /**
@@ -100,7 +110,8 @@ namespace GameBox.UI.Background
         /**
          * The target widget to draw background from.
          */
-        private Gtk.Widget m_Target;
+        private Gtk.Widget? m_Target;
+        private bool m_CachedAppPaintable;
     }
 }
 

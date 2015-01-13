@@ -44,8 +44,8 @@ namespace GameBox.UI.Background
         protected abstract void Update(Gdk.FrameClock clock);
 
         // Inherited documentation.
-        protected override void OnTargetChanged(Gtk.Widget old_widget,
-                                                Gtk.Widget new_widget)
+        protected override void OnTargetChanged(Gtk.Widget? old_widget,
+                                                Gtk.Widget? new_widget)
         {
             base.OnTargetChanged(old_widget, new_widget);
 

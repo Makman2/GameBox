@@ -15,7 +15,8 @@ RESOURCEXML=src/resources.gresource.xml
 default: debug
 
 debug:
-	valac --pkg="gtk+-3.0" --directory="./build" --basedir="./src" $(SOURCES)
+	valac --pkg="gtk+-3.0" --directory="./build" --basedir="./src" -g \
+          --save-temps $(SOURCES)
 
 resources:
 	mkdir -p build
