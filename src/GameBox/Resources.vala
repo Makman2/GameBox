@@ -84,8 +84,9 @@ namespace GameBox
             }
 
             // Read entire file from stream.
-            m_Data = new Bytes(new uint8[size]);
-            stream.read(m_Data.get_data());
+            uint8[] data = new uint8[size];
+            stream.read(data);
+            m_Data = new Bytes.take(data);
 
             // Feed the real resource constructor.
             try
