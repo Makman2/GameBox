@@ -1,0 +1,3 @@
+[submodule "submodules/Vala_CMake"]
+	path = submodules/Vala_CMake
+	url = https://github.com/jakobwesthoff/Vala_CMake.git
