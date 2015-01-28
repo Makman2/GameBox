@@ -90,9 +90,15 @@ namespace GameBox.UI.Background
 
             // Set the image surface as context source.
             cr.set_source_surface(m_Surface, 0.0, 0.0);
-            // Draw the actual image (via a rectangle).
-            cr.rectangle(0.0, 0.0, Target.get_allocated_width(),
-                Target.get_allocated_height());
+
+            // Use invalidate clipping regions to make drawing faster.
+            foreach (var rect in cr.copy_clip_rectangle_list().rectangles)
+            {
+                // Draw the actual image via new rectangles.
+                cr.rectangle(rect.x, rect.y, rect.width, rect.height);
+            }
+
+            // Fill the rectangles.
             cr.fill();
         }
 
