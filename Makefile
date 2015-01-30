@@ -26,8 +26,6 @@ help:
 	@echo "No target chosen. Possible targets are:"
 	@echo "  debug    Builds the GameBox application (debug build)."
 	@echo "  release  Builds the GameBox application (release build)."
-	@echo "  run      Runs the GameBox application (gamebox) in the build"
-	@echo "           directory."
 	@echo "  clean    Cleans all build files."
 	@echo ""
 	@echo "  help     Displays this help."
@@ -73,10 +71,6 @@ release: $(GAMEBOX_BUILD_DIR)
 	@$(MAKE) -C $(GAMEBOX_BUILD_DIR)/$(GAMEBOX_BUILD_RELEASE_DIR) \
              $(GAMEBOX_MAKE_FLAGS)
 	@echo "Done."
-
-run:
-	@cd $(GAMEBOX_BUILD_DIR); \
-     ./gamebox
 
 clean:
 	@if test -d $(GAMEBOX_BUILD_DIR);       \
