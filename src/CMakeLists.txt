@@ -30,6 +30,12 @@ add_definitions(${GTK_CFLAGS} ${GTK_CFLAGS_OTHER})
 link_libraries(${GTK_LIBRARIES})
 link_directories(${GTK_LIBRARY_DIRS})
 
+# Configure Vala options (i.e. debug/release mode).
+set(VALA_OPTIONS "")
+if ("${CMAKE_BUILD_TYPE}" STREQUAL "debug")
+    list(APPEND VALA_OPTIONS "--debug")
+endif()
+
 # Add the main sources.
 list(APPEND SOURCES
     gamebox.vala
@@ -42,7 +48,9 @@ add_subdirectory(GameBox)
 set(VALA_PACKAGES "gtk+-3.0")
 
 # Precompile the C-files from Vala compiler and place them into "VALA_C".
-vala_precompile(VALA_C ${SOURCES} PACKAGES ${VALA_PACKAGES})
+vala_precompile(VALA_C ${SOURCES}
+                PACKAGES ${VALA_PACKAGES}
+                OPTIONS ${VALA_OPTIONS})
 
 # Add the executable compiled from the generated Vala C-files. The C-files were
 # previously stored from vala_precompile() in variable "VALA_C".
