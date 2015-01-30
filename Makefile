@@ -16,6 +16,7 @@ help:
 	@echo "  build    Builds the GameBox application."
 	@echo "  run      Runs the GameBox application (gamebox) in the build"
 	@echo "           directory."
+	@echo "  clean    Cleans all build files."
 	@echo ""
 	@echo "  help     Displays this help."
 
@@ -36,3 +37,13 @@ build:
 run:
 	@cd $(GAMEBOX_BUILD_DIR); \
      ./gamebox
+
+clean:
+	@if test -d $(GAMEBOX_BUILD_DIR);       \
+     then                                   \
+      echo -n "Cleaning up... ";            \
+      rm -rf $(GAMEBOX_BUILD_DIR);          \
+      echo "Done.";                         \
+     else                                   \
+      echo "Already clean. Nothing to do."; \
+     fi
