@@ -14,11 +14,14 @@ set(GameBox_VERSION_MICRO 0)
 # the CMake module list.
 list(APPEND CMAKE_MODULE_PATH
     ${CMAKE_SOURCE_DIR}/../submodules/Vala_CMake/vala
+    ${CMAKE_SOURCE_DIR}/../submodules/GCR_CMake/macros
 )
 
 # Include Vala macros.
 include(FindVala)
 include(UseVala)
+# Include GCR macros (for resource compilation).
+include(GlibCompileResourcesSupport)
 
 # Find and configure needed packages.
 # - Vala
@@ -55,3 +58,18 @@ vala_precompile(VALA_C ${SOURCES}
 # Add the executable compiled from the generated Vala C-files. The C-files were
 # previously stored from vala_precompile() in variable "VALA_C".
 add_executable("gamebox" ${VALA_C})
+
+# Compile resources if any.
+if (${RESOURCES})
+    # TODO: Use a configuration.vala.in file to put in there the name of the
+    #       resource file so it can be used in the resource manager.
+    compile_gresources(RESOURCE_OUT
+                       TYPE BUNDLE
+                       TARGET "resources.gresource"
+                       RESOURCES ${RESOURCES})
+
+    # Create a separate target "resources" that is run with the "all" target.
+    add_custom_target(resources
+                      ALL
+                      DEPENDS ${RESOURCE_OUT})
+endif()
