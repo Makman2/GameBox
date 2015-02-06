@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.10"/>
+  <template class="GameBoxUIApplicationWindow" parent="GtkApplicationWindow">
+    <child>
+      <object class="GtkOverlay" id="Overlay">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

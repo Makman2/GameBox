@@ -1,3 +1,6 @@
 [submodule "submodules/Vala_CMake"]
 	path = submodules/Vala_CMake
 	url = https://github.com/jakobwesthoff/Vala_CMake.git
+[submodule "submodules/GCR_CMake"]
+	path = submodules/GCR_CMake
+	url = https://github.com/Makman2/GCR_CMake.git

@@ -14,11 +14,14 @@ set(GameBox_VERSION_MICRO 0)
 # the CMake module list.
 list(APPEND CMAKE_MODULE_PATH
     ${CMAKE_SOURCE_DIR}/../submodules/Vala_CMake/vala
+    ${CMAKE_SOURCE_DIR}/../submodules/GCR_CMake/macros
 )
 
 # Include Vala macros.
 include(FindVala)
 include(UseVala)
+# Include GCR macros (for resource compilation).
+include(GlibCompileResourcesSupport)
 
 # Find and configure needed packages.
 # - Vala
@@ -31,7 +34,7 @@ link_libraries(${GTK_LIBRARIES})
 link_directories(${GTK_LIBRARY_DIRS})
 
 # Configure Vala options (i.e. debug/release mode).
-set(VALA_OPTIONS "")
+set(VALA_OPTIONS "--target-glib=2.38")
 if ("${CMAKE_BUILD_TYPE}" STREQUAL "debug")
     list(APPEND VALA_OPTIONS "--debug")
 endif()
@@ -47,6 +50,31 @@ add_subdirectory(GameBox)
 # Configure needed Vala packages.
 set(VALA_PACKAGES "gtk+-3.0")
 
+# Compile resources if any.
+if (RESOURCES)
+    # TODO: Use a configuration.vala.in file to put in there the name of the
+    #       resource file so it can be used in the resource manager.
+    compile_gresources(RESOURCE_OUT
+                       XML_OUT
+                       TYPE BUNDLE
+                       TARGET ${CMAKE_BINARY_DIR}/resources.gresource
+                       RESOURCES ${RESOURCES})
+
+    # Create a separate target "resources" that is run with the "all" target.
+    add_custom_target(resources
+                      ALL
+                      DEPENDS ${RESOURCE_OUT})
+
+    # Copy the xml resource file to the source directory so Vala can identify
+    # the resources relative to the XML file paths in the source directory.
+    # Otherwise it would take them relatively to build directory.
+    file(COPY ${XML_OUT} DESTINATION ${CMAKE_SOURCE_DIR})
+    get_filename_component(XML_FILE_NAME ${XML_OUT} NAME)
+    message(STATUS "Copied ${XML_FILE_NAME} to source directory.")
+    list(APPEND VALA_OPTIONS
+         "--gresources=${CMAKE_SOURCE_DIR}/${XML_FILE_NAME}")
+endif()
+
 # Precompile the C-files from Vala compiler and place them into "VALA_C".
 vala_precompile(VALA_C ${SOURCES}
                 PACKAGES ${VALA_PACKAGES}
@@ -55,3 +83,9 @@ vala_precompile(VALA_C ${SOURCES}
 # Add the executable compiled from the generated Vala C-files. The C-files were
 # previously stored from vala_precompile() in variable "VALA_C".
 add_executable("gamebox" ${VALA_C})
+
+# Make the resources target dependent from the exeutable, the resource file is
+# needed by valac.
+if (RESOURCES)
+    add_dependencies(gamebox resources)
+endif()
