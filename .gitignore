@@ -16,3 +16,6 @@
 # build directory
 build/*
 
+# Already configurated files.
+src/GameBox/BuildConfiguration.vala
+
