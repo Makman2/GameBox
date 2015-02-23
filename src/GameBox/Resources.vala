@@ -46,6 +46,10 @@ namespace GameBox
         {
             File file = File.new_for_path(RESOURCE_FILE);
 
+            // Set the resource to null to avoid invocation of the
+            // unregistration function inside the destructor.
+            m_Resource = null;
+
             // Check if file exists.
             if (!file.query_exists())
             {
@@ -109,8 +113,15 @@ namespace GameBox
 
         ~Resources()
         {
-            // Unregister resources from GameBox process.
-            resources_unregister(m_Resource);
+            // Only unregister if m_Resource is already initialized.
+            // NOTE: This is needed due to a bug in constructors. When
+            //       constructors throw an exception, they try anyway to
+            //       invoke the destructor.
+            if (m_Resource != null)
+            {
+                // Unregister resources from GameBox process.
+                resources_unregister(m_Resource);
+            }
         }
 
         /**
