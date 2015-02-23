@@ -10,7 +10,7 @@ list(APPEND SOURCES
 )
 
 list(APPEND RESOURCES
-    ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/ApplicationWindow.ui
+    STRIPBLANKS ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/ApplicationWindow.ui
 )
 
 # Append to parent variable.
