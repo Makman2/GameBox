@@ -1,0 +1,15 @@
+// This file is part of GameBox. License: GPL3
+
+// THIS FILE IS GENERATED! DO NOT MODIFY!
+// IF YOU WANT TO REFRESH THE BUILD CONFIGURATION, INVOKE THE MAKEFILE AGAIN SO 
+// CMAKE CAN CONFIGURE THIS FILE!
+
+namespace GameBox.BuildConfiguration
+{
+    const uint VersionMajor = ${GameBox_VERSION_MAJOR};
+    const uint VersionMinor = ${GameBox_VERSION_MINOR};
+    const uint VersionMicro = ${GameBox_VERSION_MICRO};
+
+    const string ResourcePath = "${GameBox_RESOURCE_RELATIVE_TO_EXE}";
+}
+

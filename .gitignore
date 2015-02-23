@@ -1,0 +1,25 @@
+# Object files
+*.o
+
+# Executables
+*.exe
+
+# Temporary editor files
+*~
+*.swp
+
+# patches, patch related files
+*.orig
+*.patch
+*.diff
+
+# build directory
+build/*
+
+# Already configurated files.
+src/GameBox/BuildConfiguration.vala
+
+# .gresource.xml is copied into the source directory in build-time because the
+# paths inside of the resources are relative to it's location.
+src/.gresource.xml
+

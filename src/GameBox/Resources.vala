@@ -16,12 +16,11 @@ namespace GameBox
             m_Instance = null;
         }
 
-        // TODO: Use a configuration.in file in CMake to generate this constant
-        //       from the gresource build.
         /**
          * The location of the resource file relative to the executable.
          */
-        private static const string RESOURCE_FILE = "resources.gresource";
+        private static const string RESOURCE_FILE =
+            GameBox.BuildConfiguration.ResourcePath;
 
         /**
          * The maximum buffer length, for security and RAM-limitation purposes.
