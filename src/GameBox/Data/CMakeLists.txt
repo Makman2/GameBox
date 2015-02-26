@@ -6,13 +6,9 @@ string(REPLACE "${PROJECT_SOURCE_DIR}/" "" CMAKE_CURRENT_LIST_DIR_RELATIVE
                "${CMAKE_CURRENT_LIST_DIR}")
 
 list(APPEND SOURCES
-    ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/Application.vala
-    ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/Resources.vala
+    ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/IDataStreamReadable.vala
 )
-
-add_subdirectory(UI)
-add_subdirectory(Data)
 
 # Append to parent variable.
 set(SOURCES "${SOURCES}" PARENT_SCOPE)
-set(RESOURCES "${RESOURCES}" PARENT_SCOPE)
+
