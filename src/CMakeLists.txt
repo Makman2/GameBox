@@ -84,17 +84,18 @@ if (RESOURCES)
     list(APPEND VALA_OPTIONS
          "--gresources=${CMAKE_SOURCE_DIR}/${XML_FILE_NAME}")
 
-    # Configure build configuration.
-    string(REPLACE "${CMAKE_BINARY_DIR}/" "" GameBox_RESOURCE_RELATIVE_TO_EXE
-           ${RESOURCE_OUT})
-    configure_file(${CMAKE_CURRENT_LIST_DIR}/GameBox/BuildConfiguration.vala.in
-                   ${CMAKE_CURRENT_LIST_DIR}/GameBox/BuildConfiguration.vala)
-    # Process configured file name to add to the vala sources.
-    string(REPLACE "${PROJECT_SOURCE_DIR}" "" CMAKE_CURRENT_LIST_DIR_RELATIVE
-                   "${CMAKE_CURRENT_LIST_DIR}")
-    list(APPEND SOURCES
-         ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/GameBox/BuildConfiguration.vala)
 endif()
+
+# Configure build configuration.
+string(REPLACE "${CMAKE_BINARY_DIR}/" "" GameBox_RESOURCE_RELATIVE_TO_EXE
+       ${RESOURCE_OUT})
+configure_file(${CMAKE_CURRENT_LIST_DIR}/GameBox/BuildConfiguration.vala.in
+               ${CMAKE_CURRENT_LIST_DIR}/GameBox/BuildConfiguration.vala)
+# Process configured file name to add to the vala sources.
+string(REPLACE "${PROJECT_SOURCE_DIR}" "" CMAKE_CURRENT_LIST_DIR_RELATIVE
+               "${CMAKE_CURRENT_LIST_DIR}")
+list(APPEND SOURCES
+     ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/GameBox/BuildConfiguration.vala)
 
 # Precompile the C-files from Vala compiler and place them into "VALA_C".
 vala_precompile(VALA_C ${SOURCES}
