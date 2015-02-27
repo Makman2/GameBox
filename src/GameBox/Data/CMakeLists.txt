@@ -10,6 +10,7 @@ list(APPEND SOURCES
     ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/DataStreamReadableBase.vala
     ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/IDataStreamWritable.vala
     ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/DataStreamWritableBase.vala
+    ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/DataStreamManagerBase.vala
 )
 
 # Append to parent variable.
