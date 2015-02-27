@@ -98,7 +98,8 @@ list(APPEND SOURCES
      ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/GameBox/BuildConfiguration.vala)
 
 # Precompile the C-files from Vala compiler and place them into "VALA_C".
-vala_precompile(VALA_C ${SOURCES}
+vala_precompile(VALA_C
+                SOURCES ${SOURCES}
                 PACKAGES ${VALA_PACKAGES}
                 OPTIONS ${VALA_OPTIONS})
 
