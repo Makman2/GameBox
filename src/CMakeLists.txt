@@ -77,7 +77,7 @@ if (RESOURCES)
                        DEPENDS ${XML_OUT}
                        COMMENT "Copy ${XML_FILE_NAME} to source directory")
 
-    add_custom_target(copy_resources
+    add_custom_target(copy_resources_xml
                       ALL
                       DEPENDS ${CMAKE_SOURCE_DIR}/${XML_FILE_NAME})
 
@@ -98,7 +98,8 @@ list(APPEND SOURCES
      ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/GameBox/BuildConfiguration.vala)
 
 # Precompile the C-files from Vala compiler and place them into "VALA_C".
-vala_precompile(VALA_C ${SOURCES}
+vala_precompile(VALA_C
+                SOURCES ${SOURCES}
                 PACKAGES ${VALA_PACKAGES}
                 OPTIONS ${VALA_OPTIONS})
 
@@ -106,10 +107,9 @@ vala_precompile(VALA_C ${SOURCES}
 # previously stored from vala_precompile() in variable "VALA_C".
 add_executable("gamebox" ${VALA_C})
 
-# Make the resources target dependent from the exeutable, the resource file is
-# needed by valac. Also add the dependency for the copy, since the copy is
-# needed by valac directly for --gresources.
+# Make the resources xml copy target dependent from the executable, since the
+# copy is needed by valac directly for --gresources. The resource file itself
+# is not needed at compilation stage, only for runtime.
 if (RESOURCES)
-    add_dependencies(gamebox copy_resources)
-    add_dependencies(copy_resources resources)
+    add_dependencies(gamebox copy_resources_xml)
 endif()
