@@ -77,7 +77,7 @@ if (RESOURCES)
                        DEPENDS ${XML_OUT}
                        COMMENT "Copy ${XML_FILE_NAME} to source directory")
 
-    add_custom_target(copy_resources
+    add_custom_target(copy_resources_xml
                       ALL
                       DEPENDS ${CMAKE_SOURCE_DIR}/${XML_FILE_NAME})
 
@@ -110,6 +110,6 @@ add_executable("gamebox" ${VALA_C})
 # needed by valac. Also add the dependency for the copy, since the copy is
 # needed by valac directly for --gresources.
 if (RESOURCES)
-    add_dependencies(gamebox copy_resources)
-    add_dependencies(copy_resources resources)
+    add_dependencies(gamebox copy_resources_xml)
+    add_dependencies(copy_resources_xml resources)
 endif()
