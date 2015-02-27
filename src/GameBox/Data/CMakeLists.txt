@@ -7,6 +7,7 @@ string(REPLACE "${PROJECT_SOURCE_DIR}/" "" CMAKE_CURRENT_LIST_DIR_RELATIVE
 
 list(APPEND SOURCES
     ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/IDataStreamReadable.vala
+    ${CMAKE_CURRENT_LIST_DIR_RELATIVE}/DataStreamReadableBase.vala
 )
 
 # Append to parent variable.
