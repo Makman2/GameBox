@@ -107,10 +107,9 @@ vala_precompile(VALA_C
 # previously stored from vala_precompile() in variable "VALA_C".
 add_executable("gamebox" ${VALA_C})
 
-# Make the resources target dependent from the exeutable, the resource file is
-# needed by valac. Also add the dependency for the copy, since the copy is
-# needed by valac directly for --gresources.
+# Make the resources xml copy target dependent from the executable, since the
+# copy is needed by valac directly for --gresources. The resource file itself
+# is not needed at compilation stage, only for runtime.
 if (RESOURCES)
     add_dependencies(gamebox copy_resources_xml)
-    add_dependencies(copy_resources_xml resources)
 endif()
