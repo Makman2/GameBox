@@ -52,8 +52,6 @@ set(VALA_PACKAGES "gtk+-3.0")
 
 # Compile resources if any.
 if (RESOURCES)
-    # TODO: Use a configuration.vala.in file to put in there the name of the
-    #       resource file so it can be used in the resource manager.
     compile_gresources(RESOURCE_OUT
                        XML_OUT
                        TYPE BUNDLE
