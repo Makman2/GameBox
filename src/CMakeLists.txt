@@ -26,12 +26,18 @@ include(GlibCompileResourcesSupport)
 # Find and configure needed packages.
 # - Vala
 find_package(Vala 0.26 REQUIRED)
-# - Gtk3 Vala package
+# - pkgconfig (needed to find other packages)
 find_package(PkgConfig)
+# - Gtk3 Vala package
 pkg_check_modules(GTK REQUIRED gtk+-3.0)
 add_definitions(${GTK_CFLAGS} ${GTK_CFLAGS_OTHER})
 link_libraries(${GTK_LIBRARIES})
 link_directories(${GTK_LIBRARY_DIRS})
+# - GXml
+pkg_check_modules(GXml REQUIRED gxml-0.4)
+add_definitions(${GXML_CFLAGS} ${GXML_CFLAGS_OTHER})
+link_libraries(${GXML_LIBRARIES})
+link_directories(${GXML_LIBRARY_DIRS})
 
 # Configure Vala options (i.e. debug/release mode).
 set(VALA_OPTIONS "--target-glib=2.38")
@@ -48,7 +54,10 @@ list(APPEND SOURCES
 add_subdirectory(GameBox)
 
 # Configure needed Vala packages.
-set(VALA_PACKAGES "gtk+-3.0")
+set(VALA_PACKAGES
+    "gtk+-3.0"
+    "gxml-0.4"
+)
 
 # Compile resources if any.
 if (RESOURCES)
